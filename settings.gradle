@@ -1,0 +1,8 @@
+rootProject.name = 'Low_Level_Design'
+include 'ShoppingCart'
+include 'TicTacToe'
+include 'Car-Rental-System'
+include 'DesignLogger'
+include 'FlipkartBid'
+include 'CricBuzz'
+
