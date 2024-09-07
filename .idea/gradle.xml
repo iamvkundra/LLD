@@ -9,10 +9,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Car-Rental-System" />
+            <option value="$PROJECT_DIR$/Account" />
+            <option value="$PROJECT_DIR$/BookMyShow" />
+            <option value="$PROJECT_DIR$/CabBookingService" />
             <option value="$PROJECT_DIR$/CricBuzz" />
             <option value="$PROJECT_DIR$/DesignLogger" />
-            <option value="$PROJECT_DIR$/FlipkartBid" />
+            <option value="$PROJECT_DIR$/DesignParkingLot" />
+            <option value="$PROJECT_DIR$/MakemyTrip" />
+            <option value="$PROJECT_DIR$/RateLimiter" />
             <option value="$PROJECT_DIR$/ShoppingCart" />
             <option value="$PROJECT_DIR$/TicTacToe" />
           </set>
