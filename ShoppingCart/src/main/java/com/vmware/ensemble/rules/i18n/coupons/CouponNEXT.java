@@ -9,6 +9,8 @@ import com.vmware.ensemble.rules.i18n.interfaces.CartItem;
 import com.vmware.ensemble.rules.i18n.models.Coupon;
 import com.vmware.ensemble.rules.i18n.models.Product;
 
+
+
 public class CouponNEXT extends Coupon {
 
     private final ProductType productType;
