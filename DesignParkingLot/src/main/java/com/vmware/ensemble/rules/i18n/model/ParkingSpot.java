@@ -1,33 +1,32 @@
 package com.vmware.ensemble.rules.i18n.model;
 
+import com.vmware.ensemble.rules.i18n.model.vehicle.Vehicle;
+
 public class ParkingSpot {
 
-    private String spotId;
-    private String spotNumber;
-    private boolean isParked;
+    private String parkingSpotId;
+    private boolean isOccupied;
+    private Class<? extends Vehicle> vehicleType;
 
-    public ParkingSpot(String spotId, String spotNumber) {
-        this.spotId = spotId;
-        this.spotNumber = spotNumber;
+    public ParkingSpot(String parkingSpotId, Class<? extends Vehicle> vehicleType) {
+        this.parkingSpotId = parkingSpotId;
+        this.isOccupied = false;
+        this.vehicleType = vehicleType;
     }
 
-    public void parkVehicle() {
-        this.isParked = true;
+    public String getParkingSpotId() {
+        return this.parkingSpotId;
     }
 
-    public String getSpotId() {
-        return spotId;
+    public boolean isOccupied() {
+        return this.isOccupied;
     }
 
-    public void setSpotId(String spotId) {
-        this.spotId = spotId;
+    public void setOccupied(boolean occupied) {
+        this.isOccupied = occupied;
     }
 
-    public String getSpotNumber() {
-        return spotNumber;
-    }
-
-    public void setSpotNumber(String spotNumber) {
-        this.spotNumber = spotNumber;
+    public Class<? extends Vehicle> getVehicleType() {
+        return vehicleType;
     }
 }
