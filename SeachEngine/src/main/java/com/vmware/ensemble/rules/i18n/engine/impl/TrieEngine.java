@@ -14,14 +14,14 @@ public class TrieEngine implements SearchEngine {
     }
 
     @Override
-    public void add(Document document) {
+    public synchronized void add(Document document) {
         String[] words = document.text.toLowerCase().split("\\s+");
         for (String word : words) {
             addToTrie(word, document.documentId);
         }
     }
 
-    private void addToTrie(String word, int documentId) {
+    private synchronized void addToTrie(String word, int documentId) {
         TrieNode node = this.root;
         for (Character ch : word.toCharArray()) {
             if (!node.children.containsKey(ch)) {

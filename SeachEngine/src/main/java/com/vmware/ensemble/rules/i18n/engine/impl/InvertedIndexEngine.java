@@ -5,24 +5,35 @@ import com.vmware.ensemble.rules.i18n.model.Document;
 import com.vmware.ensemble.rules.i18n.model.Position;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class InvertedIndexEngine implements SearchEngine {
 
-    private final Map<Integer, Document> documents;
-    private final Map<String, List<Position>> invertedIndex;
+    private final ConcurrentHashMap<Integer, Document> documents;
+    private final ConcurrentHashMap<String, List<Position>> invertedIndex;
+    private final ReentrantLock lock;
 
     public InvertedIndexEngine() {
-        this.documents = new HashMap<>();
-        this.invertedIndex = new HashMap<>();
+        this.documents = new ConcurrentHashMap<>();
+        this.invertedIndex = new ConcurrentHashMap<>();
+        this.lock = new ReentrantLock();
     }
 
     @Override
-    public void add(Document document) {
-        String[] words = document.text.toLowerCase().split("\\s+");
-        for (int i=0; i<words.length; i++) {
-            invertedIndex.computeIfAbsent(words[i], k -> new ArrayList<>()).add(new Position(document.documentId, i));
+    public synchronized void add(Document document) {
+        try {
+            lock.lock();
+            String[] words = document.text.toLowerCase().split("\\s+");
+            for (int i = 0; i < words.length; i++) {
+                invertedIndex.computeIfAbsent(words[i], k -> new ArrayList<>()).add(new Position(document.documentId, i));
+            }
+            documents.put(document.documentId, document);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
-        documents.put(document.documentId, document);
     }
 
     @Override
